@@ -1,6 +1,7 @@
 package ygong8;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
@@ -54,31 +55,57 @@ public class MonitorServiceImp implements MonitorService {
 	
 	double getCpuRatioForMac(){
 		
-		//InputStream is = null;
-		//InputStreamReader isr = null;
-		BufferedReader br = null;
-		StringTokenizer st = null;
+		//List<String> command = new ArrayList<String>();
+		String[] command = new String[] {"/usr/bin", "top", "-n", "1"};
+		ProcessBuilder builder = new  ProcessBuilder();
+		builder.command(command);
+		
 		try{
-			
+			Process process = builder.start();
 			System.out.println("Process begin");
+			final InputStream is1 = process.getErrorStream();
+			final InputStream is2 = process.getInputStream();
 			
-			Process process = Runtime.getRuntime().exec("top -n -1");
+			Thread thread1 = new Thread("error"){
+				public void run(){
+					System.out.println("Current Thread: " + Thread.currentThread());
+					BufferedReader br = new BufferedReader(new InputStreamReader(is1));
+
+					String str = null;
+					try {
+						while((str = br.readLine()) != null){
+							
+							System.out.println(str);
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			};
+			Thread thread2 = new Thread("normal"){
+				public void run(){
+					System.out.println("Current Thread: " + Thread.currentThread());
+					BufferedReader br = new BufferedReader(new InputStreamReader(is2));
+					
+					String str = null;
+					try {
+						while((str = br.readLine()) != null){
+							
+							System.out.println(str);
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			};
+			thread1.start();
+			thread2.start();
 			
-			br = new BufferedReader(new InputStreamReader(process.getInputStream()));
-			
-			String str;
-			while((str = br.readLine()) != null){
-				System.out.println(str);
-			}
+			int exitValue = process.waitFor();
+			System.out.println("exitValue = "+ exitValue);
 			System.out.println("done");
-			/*System.out.println(br.readLine());
-			System.out.println(br.readLine());
-			System.out.println(br.readLine());
-			
-			st = new StringTokenizer(br.readLine());
-			while(st.hasMoreElements()){
-				System.out.println(st.nextElement());
-			}*/
 			
 		}catch  (Exception e){
 			e.printStackTrace();

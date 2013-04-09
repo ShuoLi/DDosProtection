@@ -56,50 +56,20 @@ public class MonitorServiceImp implements MonitorService {
 	double getCpuRatioForMac(){
 		
 		//List<String> command = new ArrayList<String>();
-		String[] command = new String[] {"/usr/bin", "top", "-n", "1"};
+		String[] command = new String[] {"/usr/bin/command", "top", "-n", "1"};
 		ProcessBuilder builder = new  ProcessBuilder();
-		builder.command(command);
-		
+		builder.command("bash", "-c", "cd /Users/yugegong/Desktop/IR ; ls");
+		//builder.command("bash", "-c", "top -n 1");
+		//builder.command("ls");
+		//builder.command("/usr/bin/top", "-n", "1");
 		try{
 			Process process = builder.start();
 			System.out.println("Process begin");
 			final InputStream is1 = process.getErrorStream();
 			final InputStream is2 = process.getInputStream();
 			
-			Thread thread1 = new Thread("error"){
-				public void run(){
-					System.out.println("Current Thread: " + Thread.currentThread());
-					BufferedReader br = new BufferedReader(new InputStreamReader(is1));
-
-					String str = null;
-					try {
-						while((str = br.readLine()) != null){
-							
-							System.out.println(str);
-						}
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			};
-			Thread thread2 = new Thread("normal"){
-				public void run(){
-					System.out.println("Current Thread: " + Thread.currentThread());
-					BufferedReader br = new BufferedReader(new InputStreamReader(is2));
-					
-					String str = null;
-					try {
-						while((str = br.readLine()) != null){
-							
-							System.out.println(str);
-						}
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			};
+			TermThread thread1 = new TermThread("error", is1);
+			TermThread thread2 = new TermThread("norm", is2);
 			thread1.start();
 			thread2.start();
 			

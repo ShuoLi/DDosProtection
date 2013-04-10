@@ -12,12 +12,22 @@
 <script type="text/javascript">
 function ValidateLoginForm(form)
 {
-	if(form.userid.value==""){
+	if(form.userid.length > 15){
+		alert("Username cannot be more than 15 charaters!");
+		form.userid.focus();
+		return false;
+	}
+	if(form.pwd.length > 15){
+		alert("Password cannot be more than 15 charaters!");
+		form.userid.focus();
+		return false;
+	}
+	if(form.userid.length == 0){
 		alert("Username cannot be empty!");
 		form.userid.focus();
 		return false;
 	}
-	if(form.pwd.value == ""){
+	if(form.pwd.length == 0){
 		alert("Password cannot be empty!");
 		form.password.focus();
 		return false;
@@ -55,41 +65,46 @@ java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://dbase.cs.jhu
 Statement st= con.createStatement(); 
 System.out.println(request.getParameter("login"));
 if(request.getParameter("login")!=null){
+	
+	// check username or password containing illegal characters.
 	String regEx = "[^0-9a-zA-Z]";
 	Pattern pattern = Pattern.compile(regEx);
-	Matcher matcher = pattern.matcher(pwd);
-	System.out.println("matcher.matches(): " + matcher.matches());
-	if(matcher.find()){
+	Matcher userMatcher = pattern.matcher(user);
+	Matcher pwdMatcher = pattern.matcher(pwd);
+	if(userMatcher.find() || pwdMatcher.find()){
+		System.out.println("ininininininin");
 		out.print("<script>alert('illegal characters!');window.location='Login.jsp';</script>");
 	}
-	System.out.println(user.length() +"    " + pwd.length());
-	if(user.length() > 15){
-		out.print("<script>alert('Length of Username cannot be more than 15 words!');window.location='Login.jsp';</script>");
-	}
-	else if(pwd.length() > 15){
-		out.print("<script>alert('Length of password cannot be more than 15 words!');window.location='Login.jsp';</script>");
-	}
 	else{
-		String query = "CALL verifyUser('" + user + "','" + pwd +"');";
-		System.out.println(query);
-		ResultSet rs = st.executeQuery(query);
-		while(rs.next()){
-			/*if(rs.getString("u_id")!=null){
-				if(rs.getString("u_password").equals(pwd)){
-					response.sendRedirect("admin.jsp");
-				}*/
+		// check the length of username and password. If it is more than 15 words, then invalid
+		System.out.println(user.length() +"    " + pwd.length());
+		/*if(user.length() > 15){
+			out.print("<script>alert('Length of Username cannot be more than 15 words!');window.location='Login.jsp';</script>");
+		}
+		else if(pwd.length() > 15){
+			out.print("<script>alert('Length of password cannot be more than 15 words!');window.location='Login.jsp';</script>");
+		}*/
+		//else{
+			// User storage procedure to do SQL query.
+			String query = "CALL verifyUser('" + user + "','" + pwd +"');";
+			System.out.println(query);
+			ResultSet rs = st.executeQuery(query);
+			while(rs.next()){
+				// If the value of verification == 1, then user can successfully login his account
 				System.out.println("verfication: " + rs.getString("verfication"));
 				if(rs.getString("verfication").equals("1")){
 					response.sendRedirect("admin.jsp");
 				}
 				else
 					out.print("<script>alert('Wrong password!');window.location='Login.jsp';</script>");
-			//}
-		}
-		
+				
+			}
+			
 
-	rs.close();
+		rs.close();
+		//}
 	}
+	
 	st.close();
 	con.close();
 }

@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*"%>
+<%@page import = "java.util.regex.Pattern" %>
+<%@page import = "java.util.regex.Matcher" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,22 +55,41 @@ java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://dbase.cs.jhu
 Statement st= con.createStatement(); 
 System.out.println(request.getParameter("login"));
 if(request.getParameter("login")!=null){
-	//System.out.println("ff");
-	//String query = "SELECT * From Tbl_User WHERE u_id='"+user+"' AND usertype='"+usertype+"' ;";
-	String query = "SELECT * From Tbl_User WHERE u_id='"+user+"';";
-	//out.println(query);
-	ResultSet rs = st.executeQuery(query);
-	while(rs.next()){
-		if(rs.getString("u_id")!=null){
-			if(rs.getString("u_password").equals(pwd)){
-				response.sendRedirect("admin.jsp");
-			}
-			else
-				out.print("<script>alert('Wrong password!');window.location='Login.jsp';</script>");
-		}
+	String regEx = "[^0-9a-zA-Z]";
+	Pattern pattern = Pattern.compile(regEx);
+	Matcher matcher = pattern.matcher(pwd);
+	System.out.println("matcher.matches(): " + matcher.matches());
+	if(matcher.find()){
+		out.print("<script>alert('illegal characters!');window.location='Login.jsp';</script>");
 	}
+	System.out.println(user.length() +"    " + pwd.length());
+	if(user.length() > 15){
+		out.print("<script>alert('Length of Username cannot be more than 15 words!');window.location='Login.jsp';</script>");
+	}
+	else if(pwd.length() > 15){
+		out.print("<script>alert('Length of password cannot be more than 15 words!');window.location='Login.jsp';</script>");
+	}
+	else{
+		String query = "CALL verifyUser('" + user + "','" + pwd +"');";
+		System.out.println(query);
+		ResultSet rs = st.executeQuery(query);
+		while(rs.next()){
+			/*if(rs.getString("u_id")!=null){
+				if(rs.getString("u_password").equals(pwd)){
+					response.sendRedirect("admin.jsp");
+				}*/
+				System.out.println("verfication: " + rs.getString("verfication"));
+				if(rs.getString("verfication").equals("1")){
+					response.sendRedirect("admin.jsp");
+				}
+				else
+					out.print("<script>alert('Wrong password!');window.location='Login.jsp';</script>");
+			//}
+		}
+		
 
 	rs.close();
+	}
 	st.close();
 	con.close();
 }

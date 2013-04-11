@@ -2,8 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*"%>
-<%@page import = "java.util.regex.Pattern"%>
-<%@page import = "java.util.regex.Matcher"%>
+<%@page import = "java.util.regex.Pattern" %>
+<%@page import = "java.util.regex.Matcher" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -78,29 +78,33 @@ if(request.getParameter("login")!=null){
 	else{
 		// check the length of username and password. If it is more than 15 words, then invalid
 		System.out.println(user.length() +"    " + pwd.length());
-		try {
-		CallableStatement cs = con.prepareCall("{CALL verifyUser(?,?)}");
-	 	cs.setString("user", user);
-	 	cs.setString("pwd", pwd);
-	 	ResultSet rs = cs.executeQuery();	
-		// User storage procedure to do SQL query.
-		//String query = "CALL verifyUser('" + user + "','" + pwd +"');";
-		//System.out.println(query);
-		//ResultSet rs = st.executeQuery(query);
-		while(rs.next()){
-			// If the value of verification == 1, then user can successfully login his account
-			System.out.println("verfication: " + rs.getString("verfication"));
-			if(rs.getString("verfication").equals("1")){
-				response.sendRedirect("admin.jsp");
-			}
-			else
-				out.print("<script>alert('Wrong password!');window.location='Login.jsp';</script>");		
-		}	
-		rs.close();
-		} catch (SQLException se) {	
-			se.printStackTrace();
+		/*if(user.length() > 15){
+			out.print("<script>alert('Length of Username cannot be more than 15 words!');window.location='Login.jsp';</script>");
 		}
+		else if(pwd.length() > 15){
+			out.print("<script>alert('Length of password cannot be more than 15 words!');window.location='Login.jsp';</script>");
+		}*/
+		//else{
+			// User storage procedure to do SQL query.
+			String query = "CALL verifyUser('" + user + "','" + pwd +"');";
+			System.out.println(query);
+			ResultSet rs = st.executeQuery(query);
+			while(rs.next()){
+				// If the value of verification == 1, then user can successfully login his account
+				System.out.println("verfication: " + rs.getString("verfication"));
+				if(rs.getString("verfication").equals("1")){
+					response.sendRedirect("admin.jsp");
+				}
+				else
+					out.print("<script>alert('Wrong password!');window.location='Login.jsp';</script>");
+				
+			}
+			
+
+		rs.close();
+		//}
 	}
+	
 	st.close();
 	con.close();
 }

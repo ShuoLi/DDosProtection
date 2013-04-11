@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.2.2)  11 APR 2013 00:56
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.2.2)  11 APR 2013 16:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -45,68 +45,115 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <14.4> on input line 6.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 6.
- [1
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 14.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 14.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 14.
+
+Overfull \hbox (4.51219pt too wide) in paragraph at lines 16--18
+[]\OT1/cmr/m/n/12 Traffic| 
+ []
+
+
+Overfull \hbox (4.51219pt too wide) in paragraph at lines 47--49
+[]\OT1/cmr/m/n/12 Traffic| 
+ []
+
+[1
 
 {/usr/local/texlive/2012basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 11--12
+[2] [3]
+Underfull \hbox (badness 10000) in paragraph at lines 79--80
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--23
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 24--25
-
- []
-
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 26.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 26.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 26.
-
-Underfull \hbox (badness 10000) in paragraph at lines 26--27
-
- []
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
+Underfull \hbox (badness 10000) in paragraph at lines 87--88
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 33--34
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
 
  []
 
-[3]
-Overfull \hbox (65.28564pt too wide) in paragraph at lines 46--57
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--102
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 117--118
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
+
+ []
+
+
+Overfull \hbox (53.0999pt too wide) in paragraph at lines 128--129
+[][]\OT1/cmtt/m/n/12 CallableStatement cs = con.prepareCall(``{CALL verifyUser(
+?,?)}''); 
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
+
+ []
+
+
+Overfull \hbox (65.28564pt too wide) in paragraph at lines 140--151
  [][] 
  []
 
 
-Overfull \hbox (65.28564pt too wide) in paragraph at lines 62--73
+Overfull \hbox (65.28564pt too wide) in paragraph at lines 156--167
  [][] 
  []
 
-[4] (./injection.aux) ) 
+[7] (./injection.aux) ) 
 Here is how much of TeX's memory you used:
  236 strings out of 494578
  2607 string characters out of 3168575
- 51651 words of memory out of 3000000
+ 57651 words of memory out of 3000000
  3535 multiletter control sequences out of 15000+200000
  8670 words of font info for 31 fonts, out of 3000000 for 9000
  314 hyphenation exceptions out of 8191
- 22i,9n,19p,950b,215s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 22i,9n,19p,1042b,217s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012basic/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2012basic/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2012basic/texmf-dist/fonts/t
@@ -114,10 +161,10 @@ ype1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2012basic/texmf-dist/font
 s/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2012basic/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012basic/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on injection.pdf (4 pages, 70676 bytes).
+Output written on injection.pdf (7 pages, 81208 bytes).
 PDF statistics:
- 41 PDF objects out of 1000 (max. 8388607)
- 28 compressed objects within 1 object stream
+ 52 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

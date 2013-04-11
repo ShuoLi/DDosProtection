@@ -1,7 +1,4 @@
 \documentclass[12pt]{article}
-
-
-
 \begin{document}
 \title{Network Security Project Report}
 \author{Shuo Li sli53@jhu.edu Yuge Gong ygong@jhu.edu}
@@ -42,6 +39,38 @@ Instead of using simple SQL query to do search on database, we prefer prepared s
 \item ResultSet rs = cs.executeQuery();	
 \end{enumerate} 
 We can get the input strings of user name and password as usual, but in the step 3, we will not use the ``SELECT *'' sentence any more. Instead, first define our parameterized query, then we set parameters for this prepared statements. After this, we call the storage procedure ``verifyUser''. By doing so, we avoid using the input strings from users directly, which can reduce the posibility of SQL injection to server.
+
+\begin{table}[htbp]
+\centering
+\caption{Website without SQL injection detection}
+\begin{tabular}{ l l   p{9cm}  }
+\hline
+  Input Username & Input Password & Reaction \\
+  \hline
+   & & Username cannot be empty! \\
+  Alice & &Password cannot be empty!Wrong password!  \\
+  Yuge & admin & Log in successfully! \\
+  1' OR '1' = '1 & Any Password & Wrong password! \\
+  1' OR '1' = '1 & 1' OR '1' = '1 & Log in successfully! \\ 
+    \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Website with SQL injection detection}
+\begin{tabular}{ l l   p{9cm}  }
+\hline
+  Input Username & Input Password & Reaction \\
+  \hline
+   & & Username cannot be empty! \\
+  Alice & &Password cannot be empty!Wrong password!  \\
+  Yuge & admin & Log in successfully! \\
+  1' OR '1' = '1 & Any Password & lllegal characters! \\
+  1' OR '1' = '1 & 1' OR '1' = '1 & lllegal characters! \\ 
+    \hline
+\end{tabular}
+\end{table}
 
 \end{document}
 

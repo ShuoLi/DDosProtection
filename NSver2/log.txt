@@ -1,0 +1,13 @@
+Processes: 149 total, 3 running, 1 stuck, 145 sleeping, 809 threads 
+2013/04/11 15:23:51
+Load Avg: 1.46, 1.11, 1.18 
+CPU usage: 5.88% user, 20.58% sys, 73.52% idle 
+SharedLibs: 13M resident, 7992K data, 0B linkedit.
+MemRegions: 38200 total, 1555M resident, 58M private, 611M shared.
+PhysMem: 1005M wired, 1541M active, 1515M inactive, 4060M used, 33M free.
+VM: 368G vsize, 1053M framework vsize, 1226762(0) pageins, 523766(0) pageouts.
+Networks: packets: 3603442/3066M in, 1750950/162M out.
+Disks: 834292/12G read, 727611/22G written.
+
+PID    COMMAND %CPU TIME     #TH #WQ #PORTS #MREGS RPRVT  RSHRD RSIZE  VPRVT VSIZE  PGRP  PPID  STATE   UID FAULTS COW MSGSENT MSGRECV SYSBSD SYSMACH CSW PAGEINS KPRVT KSHRD  USER
+13740  top     0.0  00:00.08 1/1 0   20+    30+    1024K+ 288K+ 1680K+ 17M+  2376M+ 12962 13739 running 0   1593+  82+ 85330+  42664+  559+   44263+  7+  0       113K+ 8584B+ root

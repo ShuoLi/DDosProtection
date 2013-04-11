@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import NetworkSecurity.DDoS.logic.IPController;
+import NetworkSecurity.DDoS.logic.ReadCPU;
 
 
 public class IPFilter implements Filter{
 
 	public void destroy() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public void doFilter(ServletRequest req, ServletResponse res,
@@ -45,7 +45,7 @@ public class IPFilter implements Filter{
 	}
 
 	public void init(FilterConfig config) throws ServletException {
-		//Get init parameter
+	
 		
 	}
 

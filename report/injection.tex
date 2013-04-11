@@ -8,12 +8,13 @@
 
 \subsection{DDos Detection}
 
-\begin{table}[htbp]
+\makeatletter\def\@captype{table}\makeatother
+\begin{minipage}{.60\textwidth}
 \centering
 \caption{Website without DDos detection}
-\begin{tabular}{ l l l   p{1cm}  }
+\begin{tabular}{|c|c|c|c|}
 \hline
-  CPU Usage & Average Load & Packets & Traffic
+  CPU Usage & Avg Load & Packets & Traffic
  \\
   \hline
   3.12 & 0.62 & 194 & 0 \\
@@ -37,14 +38,14 @@
  23.70 & 0.73 & 315 & 0\\
     \hline
 \end{tabular}
-\end{table}
-
-\begin{table}[htbp]
+\end{minipage}
+\makeatletter\def\@captype{table}\makeatother
+\begin{minipage}{.60\textwidth}
 \centering
 \caption{Website with DDos detection}
-\begin{tabular}{ l l l   p{1cm}  }
+\begin{tabular}{|c|c|c|c|}
 \hline
-  CPU Usage & Average Load & Packets & Traffic
+  CPU Usage & Avg Load & Packets & Traffic
  \\
   \hline
   3.12 & 0.69 & 163 & 0 \\
@@ -68,8 +69,8 @@
  10.81 & 1.14 & 9329 & 7\\
     \hline
 \end{tabular}
-\end{table}
 
+\end{minipage}
 \subsection{DDos Defense}
 
 
@@ -165,6 +166,9 @@ The following tables shows the differences between website reaction with or with
     \hline
 \end{tabular}
 \end{table}
+
+\newpage
+\section{Reference}
 
 \end{document}
 
